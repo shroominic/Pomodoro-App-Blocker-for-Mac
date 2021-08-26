@@ -1,7 +1,0 @@
-{
-    "deamonMode": "False",
-    "blacklistActiv": "True",
-    "whitelistActiv": "False",
-    "blacklist": ["Brave Browser", "Twitter", "WhatsApp", "Mail"],
-    "whitelist": ["Visual Studio Code"]
-}
