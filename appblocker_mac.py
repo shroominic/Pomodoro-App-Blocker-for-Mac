@@ -1,8 +1,12 @@
-from AppKit import NSWorkspace
+import AppKit
 import subprocess
 import appscript
 import rumps
 import json
+
+# Deactivate App Icon
+info = AppKit.NSBundle.mainBundle().infoDictionary()
+info["LSBackgroundOnly"] = "1"
 
 
 def close_app(app):
@@ -65,7 +69,7 @@ class AppBlocker(object):
         mins = time_left // 60 if time_left >= 0 else time_left // 60 + 1
         secs = time_left % 60 if time_left >= 0 else (-1 * time_left) % 60
 
-        self.running_apps = [apps["NSApplicationName"] for apps in NSWorkspace.sharedWorkspace().launchedApplications()]
+        self.running_apps = [apps["NSApplicationName"] for apps in AppKit.NSWorkspace.sharedWorkspace().launchedApplications()]
         for app in self.running_apps:
             if self.blacklistActiv:
                 if app in self.blacklist:
@@ -95,6 +99,8 @@ class AppBlocker(object):
             if sender.title == self.config["start"]:
                 self.timer.count = 0
                 self.timer.end = self.interval
+                self.app.quit_button.set_callback(None)
+
             sender.title = self.config["pause"]
             self.timer.start()
         else:
@@ -104,6 +110,7 @@ class AppBlocker(object):
     def stop_timer(self):
         self.set_up_menu()
         self.start_pause_button.title = self.config["start"]
+        self.app.quit_button.set_callback(rumps.quit_application)
 
     def run(self):
         self.app.run()
