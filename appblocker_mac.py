@@ -10,12 +10,12 @@ info["LSBackgroundOnly"] = "1"
 
 
 def close_app(app):
-    print(f'Closing: {app}')
+    # print(f'Closing: {app}')
     subprocess.call(['osascript', '-e', f'tell application "{app}" to quit'])
 
 
 def close_tab(tab, browser='Safari'):
-    print(f'Closing: {tab}')
+    # print(f'Closing: {tab}')
     subprocess.call(['osascript', '-e', f'set closeTab to \"{tab}\" as string',
                      '-e', f'tell application \"{browser}\"',
                      '-e', 'set _W to a reference to every window',
@@ -56,7 +56,7 @@ class AppBlocker(object):
     def read_config(self):
         with open('config.json') as config:
             self.config = json.load(config)
-            print('Config updated')
+            # print('Config updated')
 
     def set_up_menu(self):
         self.timer.stop()
@@ -116,6 +116,10 @@ class AppBlocker(object):
         self.app.run()
 
 
+def main():
+    app_blocker = AppBlocker()
+    app_blocker.run()
+
+
 if __name__ == "__main__":
-    appBlocker = AppBlocker()
-    appBlocker.run()
+    main()
