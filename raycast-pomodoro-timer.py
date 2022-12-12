@@ -10,9 +10,9 @@
 # @raycast.argument1 { "type": "text", "placeholder": "Interval" }
 
 # Documentation:
-# @raycast.description choose your duration in minutes and enjoy distraction free working
-# @raycast.author Drminic
-# @raycast.authorURL https://github.com/DrNatoor
+# @raycast.description choose your duration in minutes and enjoy distraction free workings
+# @raycast.author Shroominic
+# @raycast.authorURL https://github.com/Shroominic
 
 
 import appblocker_mac as appbl
